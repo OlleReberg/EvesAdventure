@@ -441,6 +441,39 @@ Temporary Items
 /[Ll]ogs/
 /[Uu]ser[Ss]ettings/
 
+# Unity generated files
+Temp/
+Library/
+obj/
+*.unityproj
+*.pidb
+*.sln
+
+# Unity Temp files
+*.DS_Store
+*.DS_Store?
+._*
+*.svn
+*.pdb
+*.mdb
+*.opendb
+*.svd
+*.tmp
+*.userprefs
+*.user
+*.lock
+*.booproj
+*.meta
+*.asset
+*.asset.meta
+*.unity
+*.mat
+*.prefab
+*.controller
+*.anim
+*.unityproj.meta
+*.unity.meta
+
 # MemoryCaptures can get excessive in size.
 # They also could contain extremely sensitive data
 /[Mm]emoryCaptures/
