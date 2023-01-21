@@ -181,8 +181,10 @@ MonoBehaviour:
   _rb: {fileID: 136291314}
   baseMoveSpeed: 10
   boostMoveSpeed: 15
-  baseRotSpeed: 5
   boostDuration: 15
+  rotation: {x: 0, y: 0}
+  sensitivity: 1
+  smoothing: 5
 --- !u!54 &136291314
 Rigidbody:
   m_ObjectHideFlags: 0

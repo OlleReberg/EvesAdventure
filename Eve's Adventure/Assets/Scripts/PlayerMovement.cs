@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using Unity.VisualScripting.Dependencies.NCalc;
 using UnityEngine;
 
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
 public class PlayerMovement : MonoBehaviour
 {
     public Rigidbody _rb;
@@ -11,15 +15,16 @@ public class PlayerMovement : MonoBehaviour
     public float boostDuration = 10f;
     public Vector2 rotation;
     public float sensitivity = 10f;
-    
+    public float smoothing = 5f;
+
     private bool isBoosting = false;
     private float boostTimer = 0f;
-    
-    
 
     private void Start()
     {
         _rb = GetComponent<Rigidbody>();
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 
     private void Update()
@@ -33,7 +38,8 @@ public class PlayerMovement : MonoBehaviour
 
         rotation.x += Input.GetAxis("Mouse X") * sensitivity;
         rotation.y += Input.GetAxis("Mouse Y") * sensitivity;
-        transform.localRotation = Quaternion.Euler(-rotation.y, rotation.x, 0);
+        rotation.y = Mathf.Clamp(rotation.y, -60f, 60f);
+        transform.localRotation = Quaternion.Lerp(transform.localRotation, Quaternion.Euler(-rotation.y, rotation.x, 0), Time.deltaTime * smoothing);
 
         // Update boost timer
         if (isBoosting)
