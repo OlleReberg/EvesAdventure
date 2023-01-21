@@ -22,9 +22,9 @@ public class PlayerMovement : MonoBehaviour
 
     private void Start()
     {
-        _rb = GetComponent<Rigidbody>();
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
+        _rb = GetComponent<Rigidbody>(); // Get the Rigidbody component from the object and assign it to the _rb variable
+        Cursor.lockState = CursorLockMode.Locked; // lock the cursor within the game window
+        Cursor.visible = false; // make the cursor invisible
     }
 
     private void Update()
@@ -32,25 +32,25 @@ public class PlayerMovement : MonoBehaviour
         // Check for boost input
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            isBoosting = true;
-            boostTimer = 0f;
+            isBoosting = true; // set the isBoosting variable to true
+            boostTimer = 0f; // reset the boost timer
         }
 
-        rotation.x += Input.GetAxis("Mouse X") * sensitivity;
-        rotation.y += Input.GetAxis("Mouse Y") * sensitivity;
-        rotation.y = Mathf.Clamp(rotation.y, -60f, 60f);
-        transform.localRotation = Quaternion.Lerp(transform.localRotation, Quaternion.Euler(-rotation.y, rotation.x, 0), Time.deltaTime * smoothing);
+        rotation.x += Input.GetAxis("Mouse X") * sensitivity; // get horizontal mouse input and multiply by sensitivity
+        rotation.y += Input.GetAxis("Mouse Y") * sensitivity; // get vertical mouse input and multiply by sensitivity
+        rotation.y = Mathf.Clamp(rotation.y, -50f, 50f); // limit the rotation on the y-axis
+        transform.localRotation = Quaternion.Lerp(transform.localRotation, Quaternion.Euler(-rotation.y, rotation.x, 0), Time.deltaTime * smoothing); // smoothly rotate the player based on the rotation vector
 
         // Update boost timer
         if (isBoosting)
         {
-            boostTimer += Time.deltaTime;
+            boostTimer += Time.deltaTime; // increment the boost timer
 
             // End boost if duration has been reached
             if (boostTimer >= boostDuration)
             {
-                isBoosting = false;
-                boostTimer = 0f;
+                isBoosting = false; // reset isBoosting to false
+                boostTimer = 0f; // reset the boost timer
             }
         }
     }
@@ -58,9 +58,9 @@ public class PlayerMovement : MonoBehaviour
     private void FixedUpdate()
     {
         // Get movement input
-        float horInput = Input.GetAxis("Horizontal");
-        float vertInput = Input.GetAxis("Vertical");
-        float boostInput = Input.GetAxis("RocketBoost");
+        float horInput = Input.GetAxis("Horizontal"); // get horizontal input
+        float vertInput = Input.GetAxis("Vertical"); // get vertical input
+        float boostInput = Input.GetAxis("RocketBoost"); // get boost input
 
         // Calculate movement
         Vector3 movement = new Vector3(horInput, boostInput, vertInput);
