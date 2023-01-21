@@ -61,9 +61,8 @@ public class PlayerMovement : MonoBehaviour
         float horInput = Input.GetAxis("Horizontal"); // get horizontal input
         float vertInput = Input.GetAxis("Vertical"); // get vertical input
         float boostInput = Input.GetAxis("RocketBoost"); // get boost input
-
-        // Calculate movement
-        Vector3 movement = new Vector3(horInput, boostInput, vertInput);
+        
+        Vector3 movement = new Vector3(horInput, boostInput, vertInput); // Calculate movement
 
         // Apply movement to Rigidbody
         _rb.AddForce(movement * (isBoosting ? boostMoveSpeed : baseMoveSpeed), ForceMode.Acceleration);
