@@ -38,6 +38,7 @@ public class PlayerMovement : MonoBehaviour
 
         rotation.x += Input.GetAxis("Mouse X") * sensitivity; // get horizontal mouse input and multiply by sensitivity
         rotation.y += Input.GetAxis("Mouse Y") * sensitivity; // get vertical mouse input and multiply by sensitivity
+        //TODO: Make rotation based on camera rather than player, alt based on player head movement
         rotation.y = Mathf.Clamp(rotation.y, -50f, 50f); // limit the rotation on the y-axis
         transform.localRotation = Quaternion.Lerp(transform.localRotation, Quaternion.Euler(-rotation.y, rotation.x, 0), Time.deltaTime * smoothing); // smoothly rotate the player based on the rotation vector
 
