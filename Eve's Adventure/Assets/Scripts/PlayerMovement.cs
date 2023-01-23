@@ -19,7 +19,7 @@ public class PlayerMovement : MonoBehaviour
     public float boostMoveSpeed = 15f;
     public float boostDuration = 10f;
     public Vector2 rotation;
-    public float sensitivity = 10f;
+    public float sensitivity = 3f;
     public float smoothing = 5f;
 
     private bool isBoosting = false;
@@ -31,20 +31,20 @@ public class PlayerMovement : MonoBehaviour
         _rb = GetComponent<Rigidbody>(); // Get Rigidbody and assign it to variable
         _animator = GetComponent<Animator>(); //Get Animator and assign it to variable
         Cursor.lockState = CursorLockMode.Locked; // lock the cursor within the game window
-        Cursor.visible = false; // make the cursor invisible
+        //Cursor.visible = false; // make the cursor invisible
     }
-
-    private void Update()
-    {
-        // rotation.x += Input.GetAxis("Mouse X") * sensitivity; // get horizontal mouse input and multiply by sensitivity
-         //rotation.y += Input.GetAxis("Mouse Y") * sensitivity; // get vertical mouse input and multiply by sensitivity
-        // //TODO: Make rotation based on camera rather than player, alt based on player head movement
-         //rotation.y = Mathf.Clamp(rotation.y, -50f, 50f); // limit the rotation on the y-axis
-         //transform.localRotation = Quaternion.Lerp(transform.localRotation, Quaternion.Euler(-rotation.y, rotation.x, 0), Time.deltaTime * smoothing); // smoothly rotate the player based on the rotation vector
-    }
-
+    
     private void FixedUpdate()
     {
+        float mouseX = Input.GetAxis("Mouse X"); // get horizontal mouse input
+        float mouseY = Input.GetAxis("Mouse Y"); // get vertical mouse input
+
+        // Calculate the new rotation for the player
+        Quaternion newRotation = Quaternion.Euler(transform.rotation.eulerAngles + new Vector3(-mouseY * sensitivity, mouseX * sensitivity, 0));
+
+        // Smoothly rotate the player towards the new rotation
+        transform.rotation = Quaternion.Lerp(transform.rotation, newRotation, smoothing * Time.deltaTime);
+        
         // Get movement input
         float horInput = Input.GetAxis("Horizontal"); // get horizontal input
         float vertInput = Input.GetAxis("Vertical"); // get vertical input

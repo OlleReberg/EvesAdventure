@@ -651,7 +651,7 @@ MonoBehaviour:
   boostMoveSpeed: 15
   boostDuration: 10
   rotation: {x: 0, y: 0}
-  sensitivity: 10
+  sensitivity: 5
   smoothing: 5
 --- !u!54 &1481342179
 Rigidbody:
