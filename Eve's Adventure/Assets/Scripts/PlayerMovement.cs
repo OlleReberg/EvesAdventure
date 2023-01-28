@@ -69,9 +69,8 @@ public class PlayerMovement : MonoBehaviour
         MyInput();
         //Boost();
 
-        if (MathF.Abs(vertInput) > 0.01f)
+        if (MathF.Abs(vertInput) > 0.01f || MathF.Abs(horInput) > 0.01f)
         {
-            
             //Start run animation
             if (!isRunning)
             {
