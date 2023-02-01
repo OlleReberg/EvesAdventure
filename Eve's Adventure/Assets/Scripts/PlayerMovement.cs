@@ -6,7 +6,7 @@ using UnityEngine;
 
 [RequireComponent(typeof(Animator))]
 [RequireComponent(typeof(Rigidbody))]
-public class PlayerMovement : MonoBehaviour
+public class PlayerMovement : PlayerStateSubject
 {
     [Header("References")] 
     [SerializeField] private Transform player;
@@ -42,6 +42,9 @@ public class PlayerMovement : MonoBehaviour
         _animator = GetComponent<Animator>(); //Get Animator and assign it to variable
         Cursor.lockState = CursorLockMode.Locked; // lock the cursor within the game window
         //Cursor.visible = false; // make the cursor invisible
+        
+        //TESTING: notify observers when game starts running
+        NotifyObservers();
     }
     
     private void Update()
