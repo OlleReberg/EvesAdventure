@@ -14,7 +14,7 @@ public class PlayerMovement : PlayerStateSubject
     [SerializeField] private Transform orientation;
     [SerializeField] private Rigidbody rb;
     [SerializeField] private float rotationSpeed;
-    
+
     private Animator _animator;
     [Header("Movement")]
     [SerializeField] private float baseMoveSpeed = 5f;
@@ -42,7 +42,6 @@ public class PlayerMovement : PlayerStateSubject
         _animator = GetComponent<Animator>(); //Get Animator and assign it to variable
         Cursor.lockState = CursorLockMode.Locked; // lock the cursor within the game window
         //Cursor.visible = false; // make the cursor invisible
-        
         //TESTING: notify observers when game starts running
         NotifyObservers();
     }
@@ -114,7 +113,6 @@ public class PlayerMovement : PlayerStateSubject
             }
         }
     }
-
     private void MyInput()
     {
         horInput = Input.GetAxisRaw("Horizontal"); // get horizontal input
